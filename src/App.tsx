@@ -41,6 +41,11 @@ function App() {
           />
           <input type="submit" value="Add" className="" />
         </form>
+        <ul>
+          {todos.map((todo) => {
+            return <li key={todo.id}>{todo.inputValue}</li>;
+          })}
+        </ul>
       </div>
     </>
   );
