@@ -1,15 +1,15 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import "./App.css";
 
-function App() {
-  const [inputValue, setInputValue] = useState("");
-  const [todos, setTodos] = useState<Todo[]>([]);
-
   type Todo = {
     inputValue: string;
     id: number;
     checked: boolean;
   };
+
+function App() {
+  const [inputValue, setInputValue] = useState("");
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
