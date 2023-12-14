@@ -30,7 +30,17 @@ function App() {
       return todo;
     });
     setTodos(newTodos);
-  }
+  };
+
+  const handleChecked = (id: number, Checked: boolean) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.checked = !Checked;
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
 
   return (
     <>
@@ -60,7 +70,14 @@ function App() {
                 onChange={(e) => {
                   handleEdit(todo.id, e.target.value);
                 }}
+                disabled={todo.checked}
                 className=""
+              />
+              <input
+                type="checkbox"
+                onChange={() => {
+                  handleChecked(todo.id, todo.checked);
+                }}
               />
             </li>
           ))}
