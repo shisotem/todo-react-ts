@@ -23,22 +23,16 @@ function App() {
   };
 
   const handleEdit = (id: number, inputValue: string) => {
-    const newTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.inputValue = inputValue;
-      }
-      return todo;
-    });
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, inputValue } : todo
+    );
     setTodos(newTodos);
   };
 
-  const handleChecked = (id: number, Checked: boolean) => {
-    const newTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.checked = !Checked;
-      }
-      return todo;
-    });
+  const handleChecked = (id: number) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    );
     setTodos(newTodos);
   };
 
@@ -72,18 +66,11 @@ function App() {
               <input
                 type="text"
                 value={todo.inputValue}
-                onChange={(e) => {
-                  handleEdit(todo.id, e.target.value);
-                }}
+                onChange={(e) => handleEdit(todo.id, e.target.value)}
                 disabled={todo.checked}
                 className=""
               />
-              <input
-                type="checkbox"
-                onChange={() => {
-                  handleChecked(todo.id, todo.checked);
-                }}
-              />
+              <input type="checkbox" onChange={() => handleChecked(todo.id)} />
               <button onClick={() => handleDelete(todo.id)}>Del</button>
             </li>
           ))}
